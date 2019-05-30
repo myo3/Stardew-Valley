@@ -1,0 +1,11 @@
+Name,Sell Price (Regular),Sell Price (Silver),Sell Price (Gold),Minimum Cost,Cost Location,Notes
+Amaranth,150,187,225,70,Pierre's,
+Artichoke,160,200,240,30,Pierre's,Available from year 2+.
+Beet,100,125,150,20,Oasis,
+Bok Choy,80,100,120,50,Pierre’s,
+Cranberries,75,93,112,240,Pierre’s,"Yields 2 berries at harvest, with a small random chance for more berries. Keeps producing after maturity."
+Eggplant,60,75,90,20,Pierre’s,"Keeps producing after maturity. When harvested, each Eggplant bush gives 1 Eggplant every 5 days, with a very small random chance for more Eggplants."
+Fairy Rose,290,362,435,200,Pierre’s,
+Grape,80,100,120,60,Pierre’s,"Grapes use a trellis, and continue to produce after maturity."
+Pumpkin,320,400,480,100,Pierre’s,Pumpkins can become a Giant Crop.
+Yam,160,200,240,60,Pierre’s,
