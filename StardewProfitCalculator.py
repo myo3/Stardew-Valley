@@ -17,6 +17,9 @@ summerCropProfit = {}
 fallCropProfit = {}
 winterCropProfit = {}
 
+fertilizerToQualityChance = {'none': [], 'basic': [], 'quality': []}
+seasonToCropInfo = {'spring': {}, 'summer': {}, 'fall': {}, 'winter': {}}
+
 def readData():
 	'''
 	Reads quality chance and crop profit data from csv file.
@@ -73,8 +76,20 @@ def getCropQualityChance(level=0, boost=0, fertilizer='none'):
 			Default fertilizer 'none'.
 
 	Return:
-		quality : list
+		quality : string dict
 			Percentage chance of getting each quality of the item
+
+			Keys:
+
+			'regular': float
+				Percent chance in decimal for regular crops
+
+			'silver': float
+				Percent chance in decimal for silver crops
+
+			'gold': float
+				Percent chance in decimal for gold crops
+
 	'''
 	assert level >= 0 and level <= 10, "Invalid farming level."
 	assert boost >= 0 and boost <= 3, "Invalid boost amount."
@@ -100,7 +115,8 @@ def getCropData(season, crop):
 		cropData: string dict
 			Information about crop.
 
-			Keys include:
+			Keys:
+
 			'regular': float
 				Sell price for regular crop
 
