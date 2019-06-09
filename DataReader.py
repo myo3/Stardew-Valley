@@ -1,3 +1,5 @@
+import string
+
 #TODO: Add documentation
 class DataReader:
 
@@ -5,7 +7,7 @@ class DataReader:
         self.fertilizerToQualityChance = fertilizerToQualityChance
         self.seasonToCropData = seasonToCropData
 
-    def getCropQualityChance(level=0, boost=0, fertilizer='none'):
+    def getCropQualityChance(self, level=0, boost=0, fertilizer='none'):
         '''
         Get the chance of recieving each quality of crop depending on
         farming level and fertilizer.
@@ -45,7 +47,7 @@ class DataReader:
 
         return quality
 
-    def getCropData(season, crop):
+    def getCropData(self, season, crop):
         '''
         Get crop data from season and crop name
 
@@ -89,11 +91,13 @@ class DataReader:
         crop = string.capwords(crop.strip().lower())
         cropData = self.seasonToCropData[season][crop]
 
-    def getCropCosts(season, crop):
+        return cropData
+
+    def getCropCosts(self, season, crop):
         '''
         Get the cost of the seed for a crop.
         '''
-        cropData = getCropData(season, crop)
+        cropData = self.getCropData(season, crop)
 
         cost = cropData['cost']
 

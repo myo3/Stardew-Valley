@@ -1,13 +1,13 @@
 #TODO: Add documentation
 from gurobipy import *
 
-class Model:
+class FarmModel:
 
     def __init__(self, data):
         self.model = Model()
         self.data = data
 
-    def getExpectedProfit(season, crop, level=0, boost=0, fertilizer='none'):
+    def getExpectedProfit(self, season, crop, level=0, boost=0, fertilizer='none'):
         '''
         Calculate the expected profit per crop based on farming level and fertilizer used.
 
@@ -33,21 +33,21 @@ class Model:
 
         profit = 0
 
-        for quality in qualities:
+        for quality in qualityData.keys():
             profit += cropData[quality] * qualityData[quality]
 
         profit -= cropData['cost']
 
         return profit
 
-    def getSolution(maxPlots, maxGold, season):
-        products = seasonToCropData[season].keys()
+    def getSolution(self, maxPlots, maxGold, season):
+        products = self.data.seasonToCropData[season].keys()
         num_products = len(products)
-        profit = [getExpectedProfit(season, crop) for crop in products]
-        cost = [getCropCosts(season, crop) for crop in products]
+        profit = [self.getExpectedProfit(season, crop) for crop in products]
+        cost = [self.data.getCropCosts(season, crop) for crop in products]
 
-        profit = [getExpectedProfit(season, crop) for crop in products]
-        cost = [getCropCosts(season, crop) for crop in products]
+        profit = [self.getExpectedProfit(season, crop) for crop in products]
+        cost = [self.data.getCropCosts(season, crop) for crop in products]
 
         x = self.model.addVars(num_products, lb=0, vtype=GRB.INTEGER, name=products)
 
@@ -60,9 +60,12 @@ class Model:
 
         solution = {"CROPS" : {}, "PROFIT" : 0.0}
         for i in range(num_products):
-            solution["CROPS"][products[i]] = self.model.x[i]
+            if self.model.x[i] > 0:
+                solution["CROPS"][products[i]] = self.model.x[i]
 
         solution["PROFIT"] = self.model.ObjVal
+
+        return solution
 
     @staticmethod
     def printSolution(solution):

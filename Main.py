@@ -1,6 +1,6 @@
-import FileReader
-import DataReader
-import Model
+from FileReader import FileReader
+from DataReader import DataReader
+from FarmModel import FarmModel
 
 fertilizers = ['none', 'basic', 'quality']
 seasons = ['spring', 'summer', 'fall', 'winter']
@@ -12,6 +12,6 @@ seasonToCropData = reader.readCropData('Crop', seasons)
 
 data = DataReader(fertilizerToQualityChance, seasonToCropData)
 
-model = Model(data)
+model = FarmModel(data)
 solution = model.getSolution(maxPlots=111, maxGold=19253, season='fall')
-Model.printSolution(solution)
+FarmModel.printSolution(solution)

@@ -8,7 +8,7 @@ class FileReader:
         self.dataFilePath = dataFilePath
         self.delimiter = '/'
 
-    def readQualityData(subfolder, fertilizers):
+    def readQualityData(self, subfolder, fertilizers):
 
         qualityPath = self.dataFilePath + self.delimiter + subfolder + self.delimiter
 
@@ -32,7 +32,7 @@ class FileReader:
 
         return fertilizerToQualityChance
 
-    def readCropData(subfolder, seasons):
+    def readCropData(self, subfolder, seasons):
 
         profitPath = self.dataFilePath + self.delimiter + subfolder + self.delimiter
 
